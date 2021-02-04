@@ -1,17 +1,13 @@
 package main
 
 import (
-	"handler"
 	"log"
 	"net/http"
-
-	"github.com/gorilla/mux"
+	"router"
 )
 
+// Entry point of the application
 func main() {
-
-	router := mux.NewRouter().StrictSlash(true)
-	router.HandleFunc("/", handler.ReadPost)
-
+	router := router.Mux()
 	log.Fatal(http.ListenAndServe(":5000", router))
 }
