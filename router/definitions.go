@@ -23,4 +23,10 @@ var routes = Routes{
 		"/",
 		handler.ReadPost,
 	},
+	Route{
+		"testing",
+		"GET",
+		"/test",
+		handler.Test,
+	},
 }
