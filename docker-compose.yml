@@ -1,0 +1,11 @@
+version: '3.6'
+
+services:
+    api:
+      build: ./
+      image: score_averager:latest
+      container_name: score_averager_api
+      ports:
+        - 5000:5000
+      volumes:
+        - ./:/go/src/
