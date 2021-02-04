@@ -16,6 +16,7 @@ type Route struct {
 // Routes represents a collection of routes
 type Routes []Route
 
+// This allows flexibiltiy to add the posibility of other routes should they be needed in the future.
 var routes = Routes{
 	Route{
 		"index",
