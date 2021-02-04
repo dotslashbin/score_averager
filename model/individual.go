@@ -1,7 +1,7 @@
 package model
 
-// UserScore represents the score of a particular user
-type UserScore struct {
+// MemberScore represents one member with a score property
+type MemberScore struct {
 	Userid int
 	Score  int
 }
