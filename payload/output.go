@@ -7,9 +7,13 @@ type Output struct {
 	Errors  []string
 }
 
-// ScoreAverage defines the structure of final average output of scoress
+// averages defines the structure of final average output of scoress
 type averages struct {
-	Managers float32
-	Team     float32
-	Others   float32
+	Scores AverageSummaries
+}
+
+type AverageSummaries struct {
+	Managers string
+	Team     string
+	Others   string
 }
