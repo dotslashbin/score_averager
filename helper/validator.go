@@ -35,6 +35,10 @@ func hasValidData(mappedInput map[string][]model.MemberScore, writer http.Respon
 
 	for groupName, value := range mappedInput {
 		for _, memberScore := range value {
+
+			/**
+			 * This validates if the given score are within range
+			 */
 			if memberScore.Score <= 0 || memberScore.Score > 5 {
 				error := []string{
 					"Invalid score input",
@@ -43,6 +47,9 @@ func hasValidData(mappedInput map[string][]model.MemberScore, writer http.Respon
 				DisplayOutput(false, error, writer)
 			}
 
+			/**
+			 * This validates if the user id has already been used or recorded
+			 */
 			if intInSlice(memberScore.Userid, evaluatedUserids) == false {
 				evaluatedUserids = append(evaluatedUserids, memberScore.Userid)
 			} else {
@@ -58,11 +65,8 @@ func hasValidData(mappedInput map[string][]model.MemberScore, writer http.Respon
 
 // ValidateInput executes the process of validating the input payload
 func ValidateInput(inputScores payload.InputScores, writer http.ResponseWriter) {
-
 	inputMap := getInputMap(inputScores)
-
 	if hasSufficientData(inputMap, writer) == true {
 		hasValidData(inputMap, writer)
 	}
-
 }
