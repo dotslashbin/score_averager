@@ -1,6 +1,7 @@
 package app
 
 import (
+	"fmt"
 	"payload"
 )
 
@@ -9,7 +10,8 @@ type Controller struct{}
 
 // Compute fetches computation of averages
 func (controller *Controller) Compute(inputScores payload.InputScores) {
-	// if len(inputScores.Scores.Others) == 0 {
-	// 	fmt.Println("woeuroeu")
-	// }
+
+	summaryOfAverages := getSummaries(inputScores)
+
+	fmt.Println("output this: " + summaryOfAverages)
 }
