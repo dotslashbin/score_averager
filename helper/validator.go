@@ -29,7 +29,7 @@ func hasSufficientData(mappedInput map[string][]model.MemberScore, writer http.R
 }
 
 // hasValidData Checks to see if the supplied scoring data are valid
-func hasValidData(mappedInput map[string][]model.MemberScore, writer http.ResponseWriter) {
+func hasValidData(mappedInput map[string][]model.MemberScore, writer http.ResponseWriter) bool {
 
 	evaluatedUserids := []int{}
 
@@ -45,6 +45,7 @@ func hasValidData(mappedInput map[string][]model.MemberScore, writer http.Respon
 					"User: " + strconv.Itoa(memberScore.Userid) + " of " + groupName + " has an invalid score of " + strconv.Itoa(memberScore.Score) + ".",
 				}
 				DisplayOutput(false, error, writer)
+				return false
 			}
 
 			/**
@@ -58,15 +59,20 @@ func hasValidData(mappedInput map[string][]model.MemberScore, writer http.Respon
 					"User: " + strconv.Itoa(memberScore.Userid) + " has recorded a score.",
 				}
 				DisplayOutput(false, error, writer)
+				return false
 			}
 		}
 	}
+
+	return true
 }
 
 // ValidateInput executes the process of validating the input payload
-func ValidateInput(inputScores payload.InputScores, writer http.ResponseWriter) {
-	inputMap := getInputMap(inputScores)
+func ValidateInput(inputScores payload.InputScores, writer http.ResponseWriter) bool {
+	inputMap := GetInputMap(inputScores)
 	if hasSufficientData(inputMap, writer) == true {
-		hasValidData(inputMap, writer)
+		return hasValidData(inputMap, writer)
 	}
+
+	return true
 }
