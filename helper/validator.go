@@ -1,10 +1,10 @@
 package helper
 
 import (
-	"fmt"
 	"model"
 	"net/http"
 	"payload"
+	"strconv"
 )
 
 // hasSufficientData checks to see if there is at least one group that has data for processing
@@ -31,9 +31,16 @@ func hasSufficientData(mappedInput map[string][]model.MemberScore, writer http.R
 // hasValidData Checks to see if the supplied scoring data are valid
 func hasValidData(mappedInput map[string][]model.MemberScore, writer http.ResponseWriter) {
 
-	for key, value := range mappedInput {
-		fmt.Println(key)
-		fmt.Println(len(value))
+	for groupName, value := range mappedInput {
+		for _, memberScore := range value {
+			if memberScore.Score <= 0 || memberScore.Score > 5 {
+				error := []string{
+					"Invalid  score input",
+					"User: " + strconv.Itoa(memberScore.Userid) + " of " + groupName + " has an invalid score of " + strconv.Itoa(memberScore.Score),
+				}
+				DisplayOutput(false, error, writer)
+			}
+		}
 	}
 }
 
