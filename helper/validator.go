@@ -31,12 +31,24 @@ func hasSufficientData(mappedInput map[string][]model.MemberScore, writer http.R
 // hasValidData Checks to see if the supplied scoring data are valid
 func hasValidData(mappedInput map[string][]model.MemberScore, writer http.ResponseWriter) {
 
+	evaluatedUserids := []int{}
+
 	for groupName, value := range mappedInput {
 		for _, memberScore := range value {
 			if memberScore.Score <= 0 || memberScore.Score > 5 {
 				error := []string{
-					"Invalid  score input",
-					"User: " + strconv.Itoa(memberScore.Userid) + " of " + groupName + " has an invalid score of " + strconv.Itoa(memberScore.Score),
+					"Invalid score input",
+					"User: " + strconv.Itoa(memberScore.Userid) + " of " + groupName + " has an invalid score of " + strconv.Itoa(memberScore.Score) + ".",
+				}
+				DisplayOutput(false, error, writer)
+			}
+
+			if intInSlice(memberScore.Userid, evaluatedUserids) == false {
+				evaluatedUserids = append(evaluatedUserids, memberScore.Userid)
+			} else {
+				error := []string{
+					"Duplicate User ID detected",
+					"User: " + strconv.Itoa(memberScore.Userid) + " has recorded a score.",
 				}
 				DisplayOutput(false, error, writer)
 			}
