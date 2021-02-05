@@ -2,25 +2,25 @@ package handler
 
 import (
 	"encoding/json"
-	"fmt"
+	"helper"
 	"net/http"
+	"payload"
 )
-
-// Scores provides the strucutre of the JSON inpout
-type Scores struct {
-	Foo string
-}
 
 // ReadPost will recieve and rad the values from a post request
 func ReadPost(writer http.ResponseWriter, request *http.Request) {
-	var scores Scores
-	err := json.NewDecoder(request.Body).Decode(&scores)
+
+	var inputScores payload.InputScores
+	err := json.NewDecoder(request.Body).Decode(&inputScores)
 
 	if err != nil {
-		fmt.Println("There was an error when parsing the input")
-		http.Error(writer, err.Error(), http.StatusBadRequest)
-		return
+		error := []string{"Invalid JSON input"}
+		helper.DisplayOutput(false, error, writer)
 	}
 
-	fmt.Println(scores.Foo)
+	helper.ValidateInput(inputScores, writer)
+
+	// controller := app.Controller{}
+	// controller.Compute(inputScores)
+
 }
