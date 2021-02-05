@@ -3,7 +3,7 @@ package payload
 // Output provides the structure of the JSON output
 type Output struct {
 	Success bool
-	data    ScoreAverage
+	Data    ScoreAverage
 	Errors  []string
 }
 
