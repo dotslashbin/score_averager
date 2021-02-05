@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"app"
 	"encoding/json"
 	"helper"
 	"net/http"
@@ -18,9 +19,10 @@ func ReadPost(writer http.ResponseWriter, request *http.Request) {
 		helper.DisplayOutput(false, error, writer)
 	}
 
-	helper.ValidateInput(inputScores, writer)
+	hasValidInputs := helper.ValidateInput(inputScores, writer)
 
-	// controller := app.Controller{}
-	// controller.Compute(inputScores)
-
+	if hasValidInputs == true {
+		controller := app.Controller{}
+		controller.Compute(inputScores)
+	}
 }
