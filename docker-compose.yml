@@ -11,3 +11,4 @@ services:
         - ./:/go/src/
       environment:
         - MAX_SCORE=5
+        - MIN_RECORDS=3
