@@ -4,6 +4,7 @@ import (
 	"helper"
 	"model"
 	"payload"
+	"strings"
 )
 
 // getSummaries returns the summaries of scores based on groups
@@ -17,12 +18,12 @@ func getSummaries(inputScores payload.InputScores) map[string]float32 {
 		if key == "managers" {
 			groupScore := model.ManagersScore{}
 			groupScore.ScoreCollection = value
-			summaries[key] = groupScore.GetAverageScore()
+			summaries[strings.Title(key)] = groupScore.GetAverageScore()
 
 		} else {
 			groupScore := model.NonManagersScore{}
 			groupScore.ScoreCollection = value
-			summaries[key] = groupScore.GetAverageScore()
+			summaries[strings.Title(key)] = groupScore.GetAverageScore()
 		}
 	}
 
