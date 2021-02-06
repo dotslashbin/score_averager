@@ -1,32 +1,30 @@
 package app
 
 import (
-	"fmt"
 	"helper"
 	"model"
 	"payload"
 )
 
 // getSummaries returns the summaries of scores based on groups
-func getSummaries(inputScores payload.InputScores) string {
+func getSummaries(inputScores payload.InputScores) map[string]float32 {
 	inputMap := helper.GetInputMap(inputScores)
+
+	summaries := make(map[string]float32)
 
 	for key, value := range inputMap {
 
 		if key == "managers" {
 			groupScore := model.ManagersScore{}
-			groupScore.Name = key
 			groupScore.ScoreCollection = value
-			fmt.Println(groupScore)
-			fmt.Println(groupScore.GetAverageScore())
+			summaries[key] = groupScore.GetAverageScore()
+
 		} else {
 			groupScore := model.NonManagersScore{}
-			groupScore.Name = key
 			groupScore.ScoreCollection = value
-			fmt.Println(groupScore)
-			fmt.Println(groupScore.GetAverageScore())
+			summaries[key] = groupScore.GetAverageScore()
 		}
 	}
 
-	return "END OF PROCES"
+	return summaries
 }
