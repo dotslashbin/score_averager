@@ -2,13 +2,11 @@ package model
 
 // ManagersScore represents the group for managers
 type ManagersScore struct {
-	Name            string
 	ScoreCollection []MemberScore
 }
 
 // NonManagersScore represents the non-managers group, which has some constraints
 type NonManagersScore struct {
-	Name            string
 	ScoreCollection []MemberScore
 }
 
