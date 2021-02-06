@@ -1,3 +1,8 @@
+/**
+ * This file contains methods that act as route handlers for the GET requests. 
+ * 
+ * I normally maintain one responsibility for each file to make it a little more readable. 
+ */
 package handler
 
 import (

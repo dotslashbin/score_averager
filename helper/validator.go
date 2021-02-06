@@ -1,3 +1,8 @@
+/**
+ * This file contains methods that are only relevant to the validator. 
+ * 
+ * I normally group methods in appropriate files named according to purpose and / or responsibility.
+ */
 package helper
 
 import (

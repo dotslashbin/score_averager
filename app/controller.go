@@ -1,3 +1,12 @@
+/**
+ * This provides the controller layer of the app. It is responsibile for beign 
+ * the middle man between the model and the one that generates the output. 
+ * 
+ * I strongly believe that controllers should only be middlemans, which means it should 
+ * not be doing all the processing, but rather calling other resources to do it. 
+ * 
+ * I normally kepe my controller methods light.
+ */
 package app
 
 import (

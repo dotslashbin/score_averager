@@ -1,3 +1,9 @@
+/**
+ * This file contains all the methods that are involved for the main purpose of the application. 
+ * 
+ * Each method is responsible for only one thing. and it is the controller that calls on to them 
+ * for execution. 
+ */
 package app
 
 import (

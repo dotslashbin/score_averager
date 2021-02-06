@@ -1,3 +1,13 @@
+/**
+ * This file provides the structure of a group data model. 
+ * 
+ * IMPORTANT!!
+ * For the sake of this exercise, I decided  to create two structures that represents 
+ * the different type of groups. I chose this approach to demonstrate the use and knowledge 
+ * of interfaces. 
+ * 
+ * It might be considered as over-engineering, and there are simpler ways to do it. 
+ */
 package model
 
 import (
