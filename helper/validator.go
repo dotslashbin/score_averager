@@ -3,9 +3,24 @@ package helper
 import (
 	"model"
 	"net/http"
+	"os"
 	"payload"
 	"strconv"
 )
+
+// getMaxScore Returns the max score based  on the configured environment variable
+func getMaxScore() int {
+	var maxScore int
+
+	if os.Getenv("MAX_SCORE") != "" {
+		converted, _ := strconv.Atoi(os.Getenv("MAX_SCORE"))
+		maxScore = converted
+	} else {
+		maxScore = 5
+	}
+
+	return maxScore
+}
 
 // hasSufficientData checks to see if there is at least one group that has data for processing
 func hasSufficientData(mappedInput map[string][]model.MemberScore, writer http.ResponseWriter) bool {
@@ -33,13 +48,15 @@ func hasValidData(mappedInput map[string][]model.MemberScore, writer http.Respon
 
 	evaluatedUserids := []int{}
 
+	maxScore := getMaxScore()
+
 	for groupName, value := range mappedInput {
 		for _, memberScore := range value {
 
 			/**
 			 * This validates if the given score are within range
 			 */
-			if memberScore.Score <= 0 || memberScore.Score > 5 {
+			if memberScore.Score <= 0 || memberScore.Score > maxScore {
 				error := []string{
 					"Invalid score input",
 					"User: " + strconv.Itoa(memberScore.Userid) + " of " + groupName + " has an invalid score of " + strconv.Itoa(memberScore.Score) + ".",
