@@ -9,3 +9,5 @@ services:
         - 5000:5000
       volumes:
         - ./:/go/src/
+      environment:
+        - MAX_SCORE=5
