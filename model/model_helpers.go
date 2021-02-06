@@ -1,7 +1,7 @@
 package model
 
-// computerForAverage returns the average score based on the given collection of sores
-func computerForAverage(collection []MemberScore) float32 {
+// computeForAverage returns the average score based on the given collection of sores
+func computeForAverage(collection []MemberScore) float32 {
 	var total float32
 	counter := 0
 

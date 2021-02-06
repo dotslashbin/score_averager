@@ -1,7 +1,8 @@
 package app
 
 import (
-	"fmt"
+	"helper"
+	"net/http"
 	"payload"
 )
 
@@ -9,9 +10,9 @@ import (
 type Controller struct{}
 
 // Compute fetches computation of averages
-func (controller *Controller) Compute(inputScores payload.InputScores) {
+func (controller *Controller) Compute(inputScores payload.InputScores, writer http.ResponseWriter) {
 
 	summaryOfAverages := getSummaries(inputScores)
 
-	fmt.Println("output this: " + summaryOfAverages)
+	helper.DisplayOutput(true, summaryOfAverages, []string{}, writer)
 }
