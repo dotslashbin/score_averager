@@ -1,5 +1,10 @@
 package model
 
+import (
+	"os"
+	"strconv"
+)
+
 // ManagersScore represents the group for managers
 type ManagersScore struct {
 	ScoreCollection []MemberScore
@@ -25,10 +30,25 @@ func (group *NonManagersScore) GetAverageScore() float32 {
 
 	numberOfScores := len(group.ScoreCollection)
 
+	minRequirement := getMinRecordsRequirement()
+
 	// This is the special case for non-manager group
-	if numberOfScores > 3 {
+	if numberOfScores > minRequirement {
 		return computeForAverage(group.ScoreCollection)
 	}
 
 	return 0
+}
+
+func getMinRecordsRequirement() int {
+	var minRecords int
+
+	if os.Getenv("MIN_RECORDS") != "" {
+		converted, _ := strconv.Atoi(os.Getenv("MIN_RECORDS"))
+		minRecords = converted
+	} else {
+		minRecords = 5
+	}
+
+	return minRecords
 }
