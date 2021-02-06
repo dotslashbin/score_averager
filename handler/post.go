@@ -20,13 +20,13 @@ func ReadPost(writer http.ResponseWriter, request *http.Request) {
 	if err != nil {
 		error := []string{err.Error()}
 
-		helper.DisplayOutput(false, error, writer)
+		helper.DisplayOutput(false, nil, error, writer)
 	} else {
 		hasValidInputs := helper.ValidateInput(inputScores, writer)
 
 		if hasValidInputs == true {
 			controller := app.Controller{}
-			controller.Compute(inputScores)
+			controller.Compute(inputScores, writer)
 		}
 	}
 }
