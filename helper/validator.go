@@ -20,7 +20,7 @@ func hasSufficientData(mappedInput map[string][]model.MemberScore, writer http.R
 
 	if hasData == false {
 		error := []string{"There are no sufficient data for processing"}
-		DisplayOutput(false, error, writer)
+		DisplayOutput(false, nil, error, writer)
 
 		return false
 	}
@@ -44,7 +44,7 @@ func hasValidData(mappedInput map[string][]model.MemberScore, writer http.Respon
 					"Invalid score input",
 					"User: " + strconv.Itoa(memberScore.Userid) + " of " + groupName + " has an invalid score of " + strconv.Itoa(memberScore.Score) + ".",
 				}
-				DisplayOutput(false, error, writer)
+				DisplayOutput(false, nil, error, writer)
 				return false
 			}
 
@@ -58,7 +58,7 @@ func hasValidData(mappedInput map[string][]model.MemberScore, writer http.Respon
 					"Duplicate User ID detected",
 					"User: " + strconv.Itoa(memberScore.Userid) + " has recorded a score.",
 				}
-				DisplayOutput(false, error, writer)
+				DisplayOutput(false, nil, error, writer)
 				return false
 			}
 		}
