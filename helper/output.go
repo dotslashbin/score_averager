@@ -7,10 +7,11 @@ import (
 )
 
 // DisplayOutput method that returns the output to the browser
-func DisplayOutput(isSuccessful bool, errorMessages []string, writer http.ResponseWriter) {
+func DisplayOutput(isSuccessful bool, data interface{}, errorMessages []string, writer http.ResponseWriter) {
 
 	output := payload.Output{
 		Success: isSuccessful,
+		Data:    data,
 		Errors:  errorMessages,
 	}
 
