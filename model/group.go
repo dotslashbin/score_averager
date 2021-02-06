@@ -17,7 +17,7 @@ type Averager interface {
 
 // GetAverageScore Returns the average score of a manager group
 func (group *ManagersScore) GetAverageScore() float32 {
-	return computerForAverage(group.ScoreCollection)
+	return computeForAverage(group.ScoreCollection)
 }
 
 // GetAverageScore Returns the average score of a non-manager group
@@ -27,7 +27,7 @@ func (group *NonManagersScore) GetAverageScore() float32 {
 
 	// This is the special case for non-manager group
 	if numberOfScores > 3 {
-		return computerForAverage(group.ScoreCollection)
+		return computeForAverage(group.ScoreCollection)
 	}
 
 	return 0
