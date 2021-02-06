@@ -12,17 +12,21 @@ import (
 func ReadPost(writer http.ResponseWriter, request *http.Request) {
 
 	var inputScores payload.InputScores
-	err := json.NewDecoder(request.Body).Decode(&inputScores)
+
+	decoder := json.NewDecoder(request.Body)
+	decoder.DisallowUnknownFields()
+	err := decoder.Decode(&inputScores)
 
 	if err != nil {
-		error := []string{"Invalid JSON input"}
+		error := []string{err.Error()}
+
 		helper.DisplayOutput(false, error, writer)
-	}
+	} else {
+		hasValidInputs := helper.ValidateInput(inputScores, writer)
 
-	hasValidInputs := helper.ValidateInput(inputScores, writer)
-
-	if hasValidInputs == true {
-		controller := app.Controller{}
-		controller.Compute(inputScores)
+		if hasValidInputs == true {
+			controller := app.Controller{}
+			controller.Compute(inputScores)
+		}
 	}
 }
