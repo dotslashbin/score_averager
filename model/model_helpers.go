@@ -1,3 +1,10 @@
+/**
+ * This is a file where I would create methods that are meant to interact wiht data models, and data models 
+ * only. I would normally include that in the same pakcage. 
+ * 
+ * If this method was to compute an average of anything ( not restricted to the MemberScore data), 
+ * it would reside on the helper package. 
+ */
 package model
 
 // computeForAverage returns the average score based on the given collection of sores
