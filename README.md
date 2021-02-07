@@ -4,7 +4,28 @@
 
 This is a simple API backend implementation written in Go. This is my submission for a coding test that is aimed to demonstrate my knowledge in the domain, the approaches that I generally take in programing and the code that I produce. 
 
-## Overview
+## Developer Notes
+
+*Environment*
+For the sole purpose of this exercise, I chose to setup a containerized development environment. I did this to demonstrate the use of a few things, such as knowledge in utilizing docker configuration  and features and a minimal setup of a Go development environment. I also think that it gives an additional advantage to developers since this allows working  on a "stripped down" enviroment as compared to managing the resources in a local machine. That beign said, here are the dependencies for included: 
+
+*Dependencies*
+ - CompileDaemon - a package that will allow something likea "live reload". I'm a fan of working like that, than having to compile each time I save. 
+ - Gorilla/mux - router package
+
+*Coding*
+I am a bigtime fan of the SOLID principles in software development, but as much as possible, I also did not want to over-engineer in this task. Each file has comments describing it's purpose and focus, and generally, this is patterened from the MVC architecture. 
+
+Here's a breakdown of the packages
+
+ - **router**: contains files that serve purpose to data routing. It also includes integraiton of the gorilla/mux router. 
+ - **payload**: broken down into input and output, and they all contain the structure of the data that passes accordingly
+ - **model**: provides the data layer of the application. They contain files that are named accordingly, and serve only one purpose. It also has a helper file that contains the methods that are relevant to these models. 
+ - **helper**: a general package that contains various implementations. They are also grouped into files named acordingly
+ - **handler**: package that is responsible for handling the routed information. 
+ - **app**: the package that does the main tasks of the application. This includes the *controller*. 
+
+## App Overview
 
 The general task is to accept a JSON input via HTTP request and it should return a structured output that contains hte results of call or the errors if there are any. 
 
