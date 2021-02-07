@@ -96,5 +96,5 @@ func ValidateInput(inputScores payload.InputScores, writer http.ResponseWriter) 
 		return hasValidData(inputMap, writer)
 	}
 
-	return true
+	return false
 }

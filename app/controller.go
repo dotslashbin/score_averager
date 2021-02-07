@@ -23,5 +23,6 @@ func (controller *Controller) Compute(inputScores payload.InputScores, writer ht
 
 	summaryOfAverages := getSummaries(inputScores)
 
+	// Triggers to send the output out after processing
 	helper.DisplayOutput(true, summaryOfAverages, []string{}, writer)
 }

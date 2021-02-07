@@ -50,6 +50,7 @@ func (group *NonManagersScore) GetAverageScore() float32 {
 	return 0
 }
 
+// getMinRecordsRequirement returns the minimum requirement of scores for processing. 
 func getMinRecordsRequirement() int {
 	var minRecords int
 
