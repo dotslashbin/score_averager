@@ -25,6 +25,7 @@ func ReadPost(writer http.ResponseWriter, request *http.Request) {
 	if err != nil {
 		error := []string{err.Error()}
 
+		// Triggers to send an error when it fails to satisfy the json decoder's requirements
 		helper.DisplayOutput(false, nil, error, writer)
 	} else {
 		hasValidInputs := helper.ValidateInput(inputScores, writer)

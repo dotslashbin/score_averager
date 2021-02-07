@@ -16,6 +16,8 @@ For the sole purpose of this exercise, I chose to setup a containerized developm
 *Coding*
 I am a bigtime fan of the SOLID principles in software development, but as much as possible, I also did not want to over-engineer in this task. Each file has comments describing it's purpose and focus, and generally, this is patterened from the MVC architecture. 
 
+I went ahead and took a strict approach in decoding the JSON from requests, rather than the lenient way of unmarshalling. This is because it matches the requirements of this exercise, and as much as possible,  I would like to be in control of what happens. 
+
 Here's a breakdown of the packages
 
  - **router**: contains files that serve purpose to data routing. It also includes integraiton of the gorilla/mux router. 
@@ -24,6 +26,7 @@ Here's a breakdown of the packages
  - **helper**: a general package that contains various implementations. They are also grouped into files named acordingly
  - **handler**: package that is responsible for handling the routed information. 
  - **app**: the package that does the main tasks of the application. This includes the *controller*. 
+
 
 ## App Overview
 
