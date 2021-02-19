@@ -26,7 +26,4 @@ func (controller *Controller) Compute(inputScores payload.InputScores) (summary 
 	} else {
 		return nil, "No data ..."
 	}
-
-	// Triggers to send the output out after processing
-	// helper.DisplayOutput(true, summaryOfAverages, []string{}, writer)
 }
