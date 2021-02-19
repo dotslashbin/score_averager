@@ -1,8 +1,8 @@
 /**
- * This file contains all the methods that are involved for the main purpose of the application. 
- * 
- * Each method is responsible for only one thing. and it is the controller that calls on to them 
- * for execution. 
+ * This file contains all the methods that are involved for the main purpose of the application.
+ *
+ * Each method is responsible for only one thing. and it is the controller that calls on to them
+ * for execution.
  */
 package app
 
@@ -21,16 +21,11 @@ func getSummaries(inputScores payload.InputScores) map[string]interface{} {
 
 	for key, value := range inputMap {
 
-		if key == "managers" {
-			groupScore := model.ManagersScore{}
-			groupScore.ScoreCollection = value
-			computedScores[strings.Title(key)] = groupScore.GetAverageScore()
+		dataModel := new(model.DataModel)
+		dataModel.Init(key, value)
 
-		} else {
-			groupScore := model.NonManagersScore{}
-			groupScore.ScoreCollection = value
-			computedScores[strings.Title(key)] = groupScore.GetAverageScore()
-		}
+		averager := dataModel.GetAverager()
+		computedScores[strings.Title(key)] = averager.GetAverageScore()
 	}
 
 	summaries := wrapWithLabel("Scores", computedScores)
@@ -39,9 +34,9 @@ func getSummaries(inputScores payload.InputScores) map[string]interface{} {
 }
 
 // wrapWithLabel wraps the data structure into a map that contains a label
-func wrapWithLabel(label string, data map[string]float32 ) map[string]interface{} {
-	wrapper  := make(map[string]interface{})
+func wrapWithLabel(label string, data map[string]float32) map[string]interface{} {
+	wrapper := make(map[string]interface{})
 	wrapper[label] = data
-	
+
 	return wrapper
 }
