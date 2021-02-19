@@ -1,13 +1,14 @@
 /**
- * This file contains methods that act as route handlers for the POST requests. 
- * 
- * I normally maintain one responsibility for each file to make it a little more readable. 
+ * This file contains methods that act as route handlers for the POST requests.
+ *
+ * I normally maintain one responsibility for each file to make it a little more readable.
  */
 package handler
 
 import (
 	"app"
 	"encoding/json"
+	"fmt"
 	"helper"
 	"net/http"
 	"payload"
@@ -32,7 +33,17 @@ func ReadPost(writer http.ResponseWriter, request *http.Request) {
 
 		if hasValidInputs == true {
 			controller := app.Controller{}
-			controller.Compute(inputScores, writer)
+			summary, error := controller.Compute(inputScores)
+
+			if error == nil {
+				helper.DisplayOutput(true, summary, []string{}, writer)
+			} else {
+
+				errorString := fmt.Sprintf("%v", error)
+
+				errorsToDisplay := []string{errorString}
+				helper.DisplayOutput(false, nil, errorsToDisplay, writer)
+			}
 		}
 	}
 }
