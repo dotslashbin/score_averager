@@ -42,10 +42,6 @@ func getSummaries(inputScores payload.InputScores) map[string]interface{} {
 	return summaries
 }
 
-// func generateGroupScroreData(group model.Averager) {
-
-// }
-
 // wrapWithLabel wraps the data structure into a map that contains a label
 func wrapWithLabel(label string, data map[string]float32) map[string]interface{} {
 	wrapper := make(map[string]interface{})
