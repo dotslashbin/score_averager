@@ -21,20 +21,11 @@ func getSummaries(inputScores payload.InputScores) map[string]interface{} {
 
 	for key, value := range inputMap {
 
-		var groupScore model.Averager
+		dataModel := new(model.DataModel)
+		dataModel.Init(key, value)
 
-		if key != "managers" {
-			groupScore = model.NonManagersScore{
-				ScoreCollection: value,
-			}
-		} else {
-			groupScore = model.ManagersScore{
-				ScoreCollection: value,
-			}
-		}
-
-		computedScores[strings.Title(key)] = groupScore.GetAverageScore()
-
+		averager := dataModel.GetAverager()
+		computedScores[strings.Title(key)] = averager.GetAverageScore()
 	}
 
 	summaries := wrapWithLabel("Scores", computedScores)
