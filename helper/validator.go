@@ -35,6 +35,7 @@ func hasSufficientData(mappedInput map[string][]model.MemberScore, writer http.R
 	for _, value := range mappedInput {
 		if len(value) > 0 {
 			hasData = true
+			break
 		}
 	}
 
