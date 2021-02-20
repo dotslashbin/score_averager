@@ -17,13 +17,13 @@ import (
 type Controller struct{}
 
 // Compute fetches computation of averages
-func (controller *Controller) Compute(inputScores payload.InputScores) (summary map[string]interface{}, error interface{}) {
+func (controller Controller) Compute(inputScores payload.InputScores) (summary map[string]interface{}, error interface{}) {
 
 	summaryOfAverages := getSummaries(inputScores)
 
 	if summaryOfAverages != nil {
 		return summaryOfAverages, nil
-	} else {
-		return nil, "No data ..."
 	}
+
+	return nil, "No data ..."
 }
