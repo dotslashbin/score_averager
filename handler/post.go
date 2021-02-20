@@ -37,12 +37,13 @@ func ReadPost(writer http.ResponseWriter, request *http.Request) {
 
 			if error == nil {
 				helper.DisplayOutput(true, summary, []string{}, writer)
-			} 
-			
-			errorString := fmt.Sprintf("%v", error)
+			} else {
 
-			errorsToDisplay := []string{errorString}
-			helper.DisplayOutput(false, nil, errorsToDisplay, writer)
+				errorString := fmt.Sprintf("%v", error)
+
+				errorsToDisplay := []string{errorString}
+				helper.DisplayOutput(false, nil, errorsToDisplay, writer)
+			}
 		}
 	}
 }
